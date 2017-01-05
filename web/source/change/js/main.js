@@ -1450,7 +1450,7 @@ var keyword = {
     $("#addtagsubmit").click(function(){
       self.ajaxaddtag();
     });
-    $("#taglisttable").on("click", "tbody .fa-trash-o", function(){
+    $("#taglist").on("click", "tbody .fa-trash-o", function(){
       var menuId = $(this).parent().parent().attr("menuid");
       self.ajaxdeltag(menuId);
     });
