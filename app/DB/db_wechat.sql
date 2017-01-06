@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `analyse_shortvideo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `analyse_shortvideo` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `MediaId` varchar(255) NOT NULL,
   `ThumbMediaId` varchar(255) NOT NULL,
   KEY `shortvideo_analyseid` (`analyseid`),
@@ -106,7 +106,7 @@ CREATE TABLE `request_analyse` (
   `ToUserName` varchar(50) NOT NULL,
   `FromUserName` varchar(50) NOT NULL,
   `MsgType` varchar(50) NOT NULL,
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `CreateTime` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `request_analyse` (`analyseid`)
@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `request_event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request_event` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `Event` varchar(255) NOT NULL,
   `EventKey` varchar(255) NOT NULL,
   `Ticket` varchar(255) NOT NULL,
@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `request_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request_image` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `PicUrl` varchar(255) NOT NULL,
   `MediaId` varchar(255) NOT NULL,
   KEY `image_analyseid` (`analyseid`),
@@ -181,7 +181,7 @@ DROP TABLE IF EXISTS `request_link`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request_link` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `Title` varchar(255) NOT NULL,
   `Description` varchar(255) NOT NULL,
   `Url` varchar(255) NOT NULL,
@@ -207,7 +207,7 @@ DROP TABLE IF EXISTS `request_location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request_location` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `Location_X` varchar(255) NOT NULL,
   `Location_Y` varchar(255) NOT NULL,
   `Scale` varchar(255) NOT NULL,
@@ -234,7 +234,7 @@ DROP TABLE IF EXISTS `request_text`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request_text` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `Content` blob NOT NULL,
   KEY `text_analyseid` (`analyseid`),
   CONSTRAINT `text_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
@@ -258,7 +258,7 @@ DROP TABLE IF EXISTS `request_video`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request_video` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `MediaId` varchar(255) NOT NULL,
   `ThumbMediaId` varchar(255) NOT NULL,
   KEY `video_analyseid` (`analyseid`),
@@ -283,7 +283,7 @@ DROP TABLE IF EXISTS `request_voice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `request_voice` (
-  `analyseid` varchar(50) NOT NULL,
+  `analyseid` int(11) NOT NULL,
   `MediaId` varchar(255) NOT NULL,
   `Format` varchar(255) NOT NULL,
   KEY `voice_analyseid` (`analyseid`),
