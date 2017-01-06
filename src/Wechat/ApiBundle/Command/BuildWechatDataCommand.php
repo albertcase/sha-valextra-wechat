@@ -20,7 +20,7 @@ class BuildWechatDataCommand extends Command{
   protected function execute(InputInterface $input, OutputInterface $output)
   {
     $fs = new Filesystem();
-    $path = dirname(__FILE__).'/../../web/upload/wechatcache';
+    $path = dirname(__FILE__).'/../../../../web/upload/wechatcache';
     if(!$fs->exists($path));
       $fs->mkdir($path);
     $_db = $this->getApplication()->getKernel()->getContainer()->get('my.dataSql');
