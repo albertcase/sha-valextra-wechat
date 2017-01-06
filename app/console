@@ -24,8 +24,4 @@ if ($debug) {
 
 $kernel = new AppKernel($env, $debug);
 $application = new Application($kernel);
-$application->add(new \SelfCommand\ClearToken());
-$application->add(new \SelfCommand\GetWechatUsers());
-$application->add(new \SelfCommand\UpdateOpenidInfo());
-$application->add(new \SelfCommand\BuildWechatData());
 $application->run($input);

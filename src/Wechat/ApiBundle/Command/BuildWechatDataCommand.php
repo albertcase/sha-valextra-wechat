@@ -1,5 +1,5 @@
 <?php
-namespace SelfCommand;
+namespace Wechat\ApiBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Filesystem\Filesystem;
 
-class BuildWechatData extends Command{
+class BuildWechatDataCommand extends Command{
 
   protected function configure(){
     $this->setName('me:update.wechatdata')

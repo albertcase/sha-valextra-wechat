@@ -1,5 +1,5 @@
 <?php
-namespace SelfCommand;
+namespace Wechat\ApiBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
-class GetWechatUsers extends Command{
+class GetWechatUsersCommand extends Command{
 
   protected function configure(){
     $this->setName('me:insert.allopenids')

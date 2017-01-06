@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.19, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.33, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: sam_wechat
+-- Host: localhost    Database: valextra_wechat
 -- ------------------------------------------------------
--- Server version	5.6.19-0ubuntu0.14.04.4
+-- Server version	5.6.33-0ubuntu0.14.04.1-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -46,6 +46,31 @@ LOCK TABLES `adp_article` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `analyse_shortvideo`
+--
+
+DROP TABLE IF EXISTS `analyse_shortvideo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `analyse_shortvideo` (
+  `analyseid` varchar(50) NOT NULL,
+  `MediaId` varchar(255) NOT NULL,
+  `ThumbMediaId` varchar(255) NOT NULL,
+  KEY `shortvideo_analyseid` (`analyseid`),
+  CONSTRAINT `shortvideo_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `analyse_shortvideo`
+--
+
+LOCK TABLES `analyse_shortvideo` WRITE;
+/*!40000 ALTER TABLE `analyse_shortvideo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `analyse_shortvideo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `file_path`
 --
 
@@ -70,6 +95,212 @@ LOCK TABLES `file_path` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `request_analyse`
+--
+
+DROP TABLE IF EXISTS `request_analyse`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_analyse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ToUserName` varchar(50) NOT NULL,
+  `FromUserName` varchar(50) NOT NULL,
+  `MsgType` varchar(50) NOT NULL,
+  `analyseid` varchar(50) NOT NULL,
+  `CreateTime` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `request_analyse` (`analyseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_analyse`
+--
+
+LOCK TABLES `request_analyse` WRITE;
+/*!40000 ALTER TABLE `request_analyse` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_analyse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_event`
+--
+
+DROP TABLE IF EXISTS `request_event`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_event` (
+  `analyseid` varchar(50) NOT NULL,
+  `Event` varchar(255) NOT NULL,
+  `EventKey` varchar(255) NOT NULL,
+  `Ticket` varchar(255) NOT NULL,
+  KEY `event_analyseid` (`analyseid`),
+  CONSTRAINT `event_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_event`
+--
+
+LOCK TABLES `request_event` WRITE;
+/*!40000 ALTER TABLE `request_event` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_event` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_image`
+--
+
+DROP TABLE IF EXISTS `request_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_image` (
+  `analyseid` varchar(50) NOT NULL,
+  `PicUrl` varchar(255) NOT NULL,
+  `MediaId` varchar(255) NOT NULL,
+  KEY `image_analyseid` (`analyseid`),
+  CONSTRAINT `image_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_image`
+--
+
+LOCK TABLES `request_image` WRITE;
+/*!40000 ALTER TABLE `request_image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_link`
+--
+
+DROP TABLE IF EXISTS `request_link`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_link` (
+  `analyseid` varchar(50) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `Description` varchar(255) NOT NULL,
+  `Url` varchar(255) NOT NULL,
+  KEY `link_analyseid` (`analyseid`),
+  CONSTRAINT `link_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_link`
+--
+
+LOCK TABLES `request_link` WRITE;
+/*!40000 ALTER TABLE `request_link` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_link` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_location`
+--
+
+DROP TABLE IF EXISTS `request_location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_location` (
+  `analyseid` varchar(50) NOT NULL,
+  `Location_X` varchar(255) NOT NULL,
+  `Location_Y` varchar(255) NOT NULL,
+  `Scale` varchar(255) NOT NULL,
+  `Label` varchar(255) NOT NULL,
+  KEY `location_analyseid` (`analyseid`),
+  CONSTRAINT `location_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_location`
+--
+
+LOCK TABLES `request_location` WRITE;
+/*!40000 ALTER TABLE `request_location` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_location` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_text`
+--
+
+DROP TABLE IF EXISTS `request_text`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_text` (
+  `analyseid` varchar(50) NOT NULL,
+  `Content` blob NOT NULL,
+  KEY `text_analyseid` (`analyseid`),
+  CONSTRAINT `text_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_text`
+--
+
+LOCK TABLES `request_text` WRITE;
+/*!40000 ALTER TABLE `request_text` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_text` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_video`
+--
+
+DROP TABLE IF EXISTS `request_video`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_video` (
+  `analyseid` varchar(50) NOT NULL,
+  `MediaId` varchar(255) NOT NULL,
+  `ThumbMediaId` varchar(255) NOT NULL,
+  KEY `video_analyseid` (`analyseid`),
+  CONSTRAINT `video_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_video`
+--
+
+LOCK TABLES `request_video` WRITE;
+/*!40000 ALTER TABLE `request_video` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_video` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `request_voice`
+--
+
+DROP TABLE IF EXISTS `request_voice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `request_voice` (
+  `analyseid` varchar(50) NOT NULL,
+  `MediaId` varchar(255) NOT NULL,
+  `Format` varchar(255) NOT NULL,
+  KEY `voice_analyseid` (`analyseid`),
+  CONSTRAINT `voice_analyseid` FOREIGN KEY (`analyseid`) REFERENCES `request_analyse` (`analyseid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `request_voice`
+--
+
+LOCK TABLES `request_voice` WRITE;
+/*!40000 ALTER TABLE `request_voice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `request_voice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `stores`
 --
 
@@ -84,7 +315,9 @@ CREATE TABLE `stores` (
   `lat` varchar(30) DEFAULT NULL,
   `lng` varchar(30) DEFAULT NULL,
   `openhours` varchar(50) NOT NULL,
-  `storemap` varchar(200) NOT NULL,
+  `brandtype` varchar(50) NOT NULL,
+  `storemap` varchar(250) NOT NULL,
+  `storelog` varchar(250) NOT NULL,
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -166,7 +399,7 @@ CREATE TABLE `wechat_admin` (
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +408,7 @@ CREATE TABLE `wechat_admin` (
 
 LOCK TABLES `wechat_admin` WRITE;
 /*!40000 ALTER TABLE `wechat_admin` DISABLE KEYS */;
-INSERT INTO `wechat_admin` VALUES (1,'admin','0707e77d5f844af62318bb82dae3089e','2016-12-21 07:05:48','2016-05-13 09:25:01');
+INSERT INTO `wechat_admin` VALUES (1,'admin','9f1afee1b1e64871f1dc70174d014933','2017-01-05 09:55:37','2016-05-13 09:25:01');
 /*!40000 ALTER TABLE `wechat_admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +423,7 @@ CREATE TABLE `wechat_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menuId` varchar(50) NOT NULL,
   `getMsgType` varchar(50) NOT NULL,
-  `getContent` varchar(250) NOT NULL,
+  `getContent` blob NOT NULL,
   `getEvent` varchar(100) NOT NULL,
   `getEventKey` varchar(255) NOT NULL,
   `getTicket` varchar(255) NOT NULL,
@@ -220,7 +453,7 @@ CREATE TABLE `wechat_feedbacks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menuId` varchar(50) NOT NULL,
   `MsgType` varchar(50) NOT NULL,
-  `MsgData` longtext NOT NULL,
+  `MsgData` blob NOT NULL,
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -246,10 +479,10 @@ CREATE TABLE `wechat_getmsglog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `openid` varchar(50) NOT NULL,
   `msgType` varchar(50) NOT NULL,
-  `msgXml` longtext NOT NULL,
+  `msgXml` blob NOT NULL,
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,6 +491,7 @@ CREATE TABLE `wechat_getmsglog` (
 
 LOCK TABLES `wechat_getmsglog` WRITE;
 /*!40000 ALTER TABLE `wechat_getmsglog` DISABLE KEYS */;
+INSERT INTO `wechat_getmsglog` VALUES (1,'oFnmEwXwuGha8zvqN63cJJqIACsE','text','<xml><ToUserName><![CDATA[gh_49b6b08d624c]]></ToUserName>\n<FromUserName><![CDATA[oFnmEwXwuGha8zvqN63cJJqIACsE]]></FromUserName>\n<CreateTime>1483611111</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[🙃🙃🙃🙃]]></Content>\n<MsgId>6372061202149830520</MsgId>\n</xml>','2017-01-05 10:11:51'),(2,'oFnmEwXwuGha8zvqN63cJJqIACsE','text','<xml><ToUserName><![CDATA[gh_49b6b08d624c]]></ToUserName>\n<FromUserName><![CDATA[oFnmEwXwuGha8zvqN63cJJqIACsE]]></FromUserName>\n<CreateTime>1483611167</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[a]]></Content>\n<MsgId>6372061442667999108</MsgId>\n</xml>','2017-01-05 10:12:47'),(3,'oFnmEwXwuGha8zvqN63cJJqIACsE','text','<xml><ToUserName><![CDATA[gh_49b6b08d624c]]></ToUserName>\n<FromUserName><![CDATA[oFnmEwXwuGha8zvqN63cJJqIACsE]]></FromUserName>\n<CreateTime>1483611173</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[hhh]]></Content>\n<MsgId>6372061468437802886</MsgId>\n</xml>','2017-01-05 10:12:54'),(4,'oFnmEwXwuGha8zvqN63cJJqIACsE','text','<xml><ToUserName><![CDATA[gh_49b6b08d624c]]></ToUserName>\n<FromUserName><![CDATA[oFnmEwXwuGha8zvqN63cJJqIACsE]]></FromUserName>\n<CreateTime>1483611179</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[a]]></Content>\n<MsgId>6372061494207606666</MsgId>\n</xml>','2017-01-05 10:12:59'),(5,'oFnmEwXwuGha8zvqN63cJJqIACsE','text','<xml><ToUserName><![CDATA[gh_49b6b08d624c]]></ToUserName>\n<FromUserName><![CDATA[oFnmEwXwuGha8zvqN63cJJqIACsE]]></FromUserName>\n<CreateTime>1483611189</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[a]]></Content>\n<MsgId>6372061537157279633</MsgId>\n</xml>','2017-01-05 10:13:09'),(6,'oFnmEwXwuGha8zvqN63cJJqIACsE','text','<xml><ToUserName><![CDATA[gh_49b6b08d624c]]></ToUserName>\n<FromUserName><![CDATA[oFnmEwXwuGha8zvqN63cJJqIACsE]]></FromUserName>\n<CreateTime>1483611286</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[a]]></Content>\n<MsgId>6372061953769107368</MsgId>\n</xml>','2017-01-05 10:14:46'),(7,'oFnmEwXwuGha8zvqN63cJJqIACsE','text','<xml><ToUserName><![CDATA[gh_49b6b08d624c]]></ToUserName>\n<FromUserName><![CDATA[oFnmEwXwuGha8zvqN63cJJqIACsE]]></FromUserName>\n<CreateTime>1483611396</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[a]]></Content>\n<MsgId>6372062426215509943</MsgId>\n</xml>','2017-01-05 10:16:36');
 /*!40000 ALTER TABLE `wechat_getmsglog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,7 +559,7 @@ DROP TABLE IF EXISTS `wechat_menu`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wechat_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menuName` varchar(80) NOT NULL,
+  `menuName` blob NOT NULL,
   `eventtype` varchar(50) NOT NULL,
   `eventKey` varchar(50) DEFAULT NULL,
   `eventUrl` varchar(255) DEFAULT NULL,
@@ -333,7 +567,7 @@ CREATE TABLE `wechat_menu` (
   `width` enum('1','2','3','4','5') DEFAULT '1',
   `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -430,6 +664,38 @@ LOCK TABLES `wechat_qrcode` WRITE;
 /*!40000 ALTER TABLE `wechat_qrcode` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wechat_qrcode` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `wechat_users`
+--
+
+DROP TABLE IF EXISTS `wechat_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wechat_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(50) NOT NULL,
+  `nickname` blob NOT NULL,
+  `headimgurl` varchar(255) NOT NULL,
+  `sex` enum('0','1','2') DEFAULT '0' COMMENT '0 null,1 male,2 female',
+  `country` varchar(60) DEFAULT NULL,
+  `province` varchar(60) DEFAULT NULL,
+  `city` varchar(60) DEFAULT NULL,
+  `status` enum('1','2') DEFAULT '1' COMMENT '1 subscript,2 unsubscript',
+  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `openid` (`openid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wechat_users`
+--
+
+LOCK TABLES `wechat_users` WRITE;
+/*!40000 ALTER TABLE `wechat_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wechat_users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -440,4 +706,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-21  7:26:29
+-- Dump completed on 2017-01-05 18:35:07
