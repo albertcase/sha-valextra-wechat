@@ -146,12 +146,12 @@ a:active {
 {% endif %}
 {% if address is defined and address %}
           <p>地址：</p>
-          <p>{{ address }}</p>
+          <p>{{ address|nl2br }}</p>
           <p></p>
 {% endif %}
 {% if openhours is defined and openhours %}
           <p>营业时间：</p>
-          <p>{{ openhours }}</p>
+          <p>{{ openhours|nl2br }}</p>
           <p></p>
 {% endif %}
 {% if phone is defined and phone %}
@@ -163,14 +163,7 @@ a:active {
 					<a href="tel:{{ phone }}">{{ phone }}</a>
 				</div>
 {% endif %}
-		<div id="click-tip">
-			<span>点击</span><a id="reader" class="btn" href="http://www.valentino.cn/cn">阅读原文</a> 登陆Valentino官网了解更多资讯
-		</div>
-		<div id="signUrlDivContainer" class="text">
-   			 <p>
-    			<img id="signUrlpic" name="signUrlpic" src="/source/valention/image/1dc8b378-e65a-4931-bd81-1ec40cf0283c.jpg">
-   			 </p>
-  		</div>
+
 		<div id="foot">
 			<p></p>
 		</div>
