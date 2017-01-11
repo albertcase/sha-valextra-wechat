@@ -39,7 +39,7 @@ class dataSql{
 
   public function insertMaterial($data){
     foreach($data as $x){
-      if(!$this->searchData(array('thumb_media_id' => $x['thumb_media_id'], array('id'), 'wechat_qrcode')))
+      if(!$this->searchData(array('thumb_media_id' => $x['thumb_media_id']), array('id'), 'wechat_material'))
         $this->insertData($x,'wechat_material');
     }
   }
