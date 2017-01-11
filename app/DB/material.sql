@@ -8,7 +8,6 @@ CREATE TABLE `wechat_material` (
   `show_cover_pic` varchar(400) DEFAULT NULL,
   `author` varchar(400) DEFAULT NULL,
   `digest` blob NOT NULL,
-  `content` varchar(400) DEFAULT NULL,
   `url` varchar(400) DEFAULT NULL,
   `content_source_url` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`),

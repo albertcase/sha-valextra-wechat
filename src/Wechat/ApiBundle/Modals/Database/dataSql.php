@@ -15,6 +15,39 @@ class dataSql{
     return clone $this->_db;
   }
 
+  public function syncMaterial($data){
+    if(!is_array($data) || !isset($data[0]))
+      return false;
+    $article = array();
+    foreach($data as $x => $x_val){
+      if(isset($x_val['content']) && isset($x_val['content']['news_item'])){
+        foreach($x_val['content']['news_item'] as $xx => $xx_val){
+          $article[] = array(
+            'title' => $this->getArrayParams($xx_val, 'title'),
+            'thumb_media_id' => $this->getArrayParams($xx_val, 'thumb_media_id'),
+            'show_cover_pic' => $this->getArrayParams($xx_val, 'show_cover_pic'),
+            'author' => $this->getArrayParams($xx_val, 'author'),
+            'digest' => $this->getArrayParams($xx_val, 'digest'),
+            'url' => $this->getArrayParams($xx_val, 'url'),
+            'content_source_url' => $this->getArrayParams($xx_val, 'content_source_url'),
+          );
+        }
+      }
+    }
+    $this->insertMaterial($article);
+  }
+
+  public function insertMaterial($data){
+    foreach($data as $x){
+      if(!$this->searchData(array('thumb_media_id' => $x['thumb_media_id'], array('id'), 'wechat_qrcode')))
+        $this->insertData($x,'wechat_material');
+    }
+  }
+
+  public function getArrayParams($arr, $name){
+    return isset($arr[$name])?$arr[$name]:'';
+  }
+
   public function tempEventLog($openid,$texts,$event,$templog){
     $data = array(
       'openid' => $openid,

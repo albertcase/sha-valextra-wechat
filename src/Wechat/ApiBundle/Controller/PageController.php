@@ -54,6 +54,7 @@ class PageController extends Controller
       $data = array();
     }else{
       $data = $check['item'];
+      $this->container->get('my.dataSql')->syncMaterial($data);
       foreach($data as $x => $x_val){
         foreach($x_val['content']['news_item'] as $xx => $xx_val){
           $data[$x]['content']['news_item'][$xx]['thumb_url'] = '/cimg.php?style=w_400&image='.urlencode($data[$x]['content']['news_item'][$xx]['thumb_url']);
