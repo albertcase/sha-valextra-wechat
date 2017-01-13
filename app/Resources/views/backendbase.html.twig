@@ -15,7 +15,9 @@
         <link href="/source/manage/css/plugins/dataTables.bootstrap.css" rel="stylesheet">
         <link href="/source/manage/css/sb-admin-2.css" rel="stylesheet">
         <link href="/source/change/css/main.css" rel="stylesheet"  />
-        <link href="/source/manage/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/source/manage/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/wechatapi/Tipso/tipso.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/wechatapi/css/tipscss.css') }}" />
 {% endblock %}
 
 {% block javascripts %}
@@ -26,6 +28,8 @@
 <script type="text/javascript" src="/source/manage/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="/source/manage/js/sb-admin-2.js"></script>
 <script type="text/javascript" src="/source/change/js/main.js"></script>
+<script type="text/javascript" src="{{ asset('bundles/wechatapi/js/tipsbox.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/wechatapi/Tipso/tipso.min.js') }}"></script>
 {% endblock %}
 </head>
 <body>
