@@ -76,3 +76,13 @@
   float: right;
   right: 10px;
 }
+
+.wehchat-mytips{
+  max-width: 340px;
+  background-color: #282828;
+  position:absolute;
+  z-index: 9999;
+  padding:10px;
+  border-radius: 6px;
+  color: #fff;
+}

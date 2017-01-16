@@ -270,6 +270,33 @@ var htmlconetnt = {
         a += '<hr>';
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
+        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
+    return a;
+  },
+  loadpushmessage:function(data){
+    var a = '';
+        a += '<div class="newslist">';
+        a += '<i class="fa fa-minus-square" style="color:red"></i>';
+        a += '<div class="form-group">';
+        a += '<label>Title:</label>';
+        a += '<input class="form-control newstitle" placeholder="Enter TITLE" value="'+data.Title+'" style="width:90%">';
+        a += '</div>';
+        a += '<div class="form-group">';
+        a += '<label>Description:</label>';
+        a += '<input class="form-control newsdescription" placeholder="Enter Your Description" value="'+data.Description+'" style="width:90%">';
+        a += '</div>';
+        a += '<div class="form-group">';
+        a += '<label>Link:</label>';
+        a += '<input class="form-control newslink" placeholder="Enter Your Url" style="width:90%" value="'+data.Url+'" name="link">';
+        a += '</div>';
+        a += '<div class="form-group">';
+        a += '<label>Cover:</label>';
+        a += '<i class="fa fa-times"></i><img src="'+data.PicUrl+'" style="width:200px;display:block;" class="newspic">';
+        a += '</div>';
+        a += '<hr>';
+        a += '</div>';
+        a += '<i class="fa fa-plus-square" style="color:green"></i>';
+        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
     return a;
   },
   apushmessage:function(data){
@@ -299,6 +326,7 @@ var htmlconetnt = {
     }
     if(la < 10){
       a += '<i class="fa fa-plus-square" style="color:green"></i>';
+      a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
     }
     return a;
   },
@@ -340,6 +368,7 @@ var htmlconetnt = {
         a += '<hr>';
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
+        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
     return a;
   },
   tagkeyword:function(){
@@ -1047,10 +1076,13 @@ var menu = {
     });
     $("#myModal").on("click",".fa-plus-square", function(){
       var a = htmlconetnt.addnewshtml();
+      $("#myModal .pushmessage .mytipsboxcs").remove();
       $(this).after(a);
       $(this).remove();
-      if($("#myModal .pushmessage .fa-minus-square").length >= 10)
+      if($("#myModal .pushmessage .fa-minus-square").length >= 10){
         $("#myModal .pushmessage .fa-plus-square").remove();
+        $("#myModal .pushmessage .mytipsboxcs").remove();
+      }
     });
     $("#myModal").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
@@ -1063,10 +1095,13 @@ var menu = {
     });
     $("#submenu").on("click",".fa-plus-square", function(){
       var a = htmlconetnt.addnewshtml();
+      $("#submenu .pushmessage .mytipsboxcs").remove();
       $(this).after(a);
       $(this).remove();
-      if($("#submenu .pushmessage .fa-minus-square").length >= 10)
+      if($("#submenu .pushmessage .fa-minus-square").length >= 10){
         $("#submenu .pushmessage .fa-plus-square").remove();
+        $("#submenu .pushmessage .mytipsboxcs").remove();
+      }
     });
     $("#submenu").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
@@ -1079,10 +1114,13 @@ var menu = {
     });
     $("#editmenu").on("click",".fa-plus-square", function(){
       var a = htmlconetnt.addnewshtml();
+      $("#editmenu .pushmessage .mytipsboxcs").remove();
       $(this).after(a);
       $(this).remove();
-      if($("#editmenu .pushmessage .fa-minus-square").length >= 10)
+      if($("#editmenu .pushmessage .fa-minus-square").length >= 10){
         $("#editmenu .pushmessage .fa-plus-square").remove();
+        $("#editmenu .pushmessage .mytipsboxcs").remove();
+      }
     });
     $("#editmenu").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
@@ -1406,10 +1444,13 @@ var keyword = {
     });
     $("#addtagdiv").on("click",".fa-plus-square", function(){
       var a = htmlconetnt.addnewshtml();
+      $("#addtagdiv .pushmessage .mytipsboxcs").remove();
       $(this).after(a);
       $(this).remove();
-      if($("#addtagdiv .pushmessage .fa-minus-square").length >= 10)
+      if($("#addtagdiv .pushmessage .fa-minus-square").length >= 10){
         $("#addtagdiv .pushmessage .fa-plus-square").remove();
+        $("#addtagdiv .pushmessage .mytipsboxcs").remove();
+      }
     });
     $("#addtagdiv").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
@@ -1424,10 +1465,13 @@ var keyword = {
     });
     $("#tagkeyslist").on("click",".fa-plus-square", function(){
       var a = htmlconetnt.addnewshtml();
+      $("#tagkeyslist .pushmessage .mytipsboxcs").remove();
       $(this).after(a);
       $(this).remove();
-      if($("#tagkeyslist .pushmessage .fa-minus-square").length >= 10)
+      if($("#tagkeyslist .pushmessage .fa-minus-square").length >= 10){
         $("#tagkeyslist .pushmessage .fa-plus-square").remove();
+        $("#tagkeyslist .pushmessage .mytipsboxcs").remove();
+      }
     });
     $("#tagkeyslist").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
@@ -1695,10 +1739,13 @@ var autoreplay = {
     });
     $("#welcomemessage").on("click",".fa-plus-square", function(){
       var a = htmlconetnt.addnewshtml();
+      $("#welcomemessage .pushmessage .mytipsboxcs").remove();
       $(this).after(a);
       $(this).remove();
-      if($("#welcomemessage .pushmessage .fa-minus-square").length >= 10)
+      if($("#welcomemessage .pushmessage .fa-minus-square").length >= 10){
         $("#welcomemessage .pushmessage .fa-plus-square").remove();
+        $("#welcomemessage .pushmessage .mytipsboxcs").remove();
+      }
     });
     $("#welcomemessage").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
@@ -1713,10 +1760,13 @@ var autoreplay = {
     });
     $("#defaultmessage").on("click",".fa-plus-square", function(){
       var a = htmlconetnt.addnewshtml();
+      $("#defaultmessage .pushmessage .mytipsboxcs").remove();
       $(this).after(a);
       $(this).remove();
-      if($("#defaultmessage .pushmessage .fa-minus-square").length >= 10)
+      if($("#defaultmessage .pushmessage .fa-minus-square").length >= 10){
         $("#defaultmessage .pushmessage .fa-plus-square").remove();
+        $("#defaultmessage .pushmessage .mytipsboxcs").remove();
+      }
     });
     $("#defaultmessage").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
