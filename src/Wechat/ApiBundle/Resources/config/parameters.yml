@@ -176,6 +176,10 @@ parameters:
       wechat_api_papi_uploadstore:
         goto: user_out_notpassede
         permission: wechat_api_wechatmenu
+
+      wechat_groupnews_papi_materiallist:
+        goto: user_out_notpassede
+        permission: user_selfcontrol
 # jssdk
       wechat_jssdk_papi_build:
         goto: user_out_notpassede

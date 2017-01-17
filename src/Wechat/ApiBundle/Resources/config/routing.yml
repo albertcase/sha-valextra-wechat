@@ -122,6 +122,10 @@ wechat_groupnews_papi_getgrouptags:
 wechat_groupnews_papi_setsendnewsevent:
     path:     /wechat/setsendnewsevent
     defaults: { _controller: WechatApiBundle:Groupnews:setsendnewsevent }
+
+wechat_groupnews_papi_materiallist:
+    path:     /wechat/materiallist
+    defaults: { _controller: WechatApiBundle:Groupnews:materiallist }
 # wechat groupnews end
 # jssdk
 wechat_jssdk_papi_build:

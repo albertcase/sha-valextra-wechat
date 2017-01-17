@@ -204,6 +204,11 @@ services:
             class: Wechat\ApiBundle\Forms\storesinfo
             scope: request
             arguments: [@request, @service_container]
+
+        form.materiallist:
+            class: Wechat\ApiBundle\Forms\materiallist
+            scope: request
+            arguments: [@request, @service_container]
 # stores end
 # script
         script.customs:

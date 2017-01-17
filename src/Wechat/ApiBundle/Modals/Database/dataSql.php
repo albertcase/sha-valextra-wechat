@@ -30,6 +30,7 @@ class dataSql{
             'digest' => $this->getArrayParams($xx_val, 'digest'),
             'url' => $this->getArrayParams($xx_val, 'url'),
             'content_source_url' => $this->getArrayParams($xx_val, 'content_source_url'),
+            'thumb_url' => $this->getArrayParams($xx_val, 'thumb_url'),
           );
         }
       }

@@ -10,6 +10,7 @@ CREATE TABLE `wechat_material` (
   `digest` blob NOT NULL,
   `url` varchar(400) DEFAULT NULL,
   `content_source_url` varchar(400) DEFAULT NULL,
+  `thumb_url` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `thumb_media_id` (`thumb_media_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
