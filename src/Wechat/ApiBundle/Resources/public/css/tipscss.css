@@ -86,3 +86,13 @@
   border-radius: 6px;
   color: #fff;
 }
+
+.tiploading{
+  text-align: center;
+  font-size: 35px;
+  line-height: 40px;
+}
+
+.tipnews ul>.tiploading{
+  height: 40px;
+}

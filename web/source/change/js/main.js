@@ -271,7 +271,12 @@ var htmlconetnt = {
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
         a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
-    return a;
+    var aobj = $(a);
+    $(aobj[3]).click(function(){
+      mytipsbox.insertnewsP = $(this);
+      mytipsbox.selecttipbox();
+    });
+    return aobj;
   },
   loadpushmessage:function(data){
     var a = '';
@@ -297,7 +302,12 @@ var htmlconetnt = {
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
         a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
-    return a;
+    var aobj = $(a);
+    $(aobj[2]).click(function(){
+      mytipsbox.insertnewsP = $(this);
+      mytipsbox.selecttipbox();
+    });
+    return aobj;
   },
   apushmessage:function(data){
     var la = data.length;
@@ -328,7 +338,16 @@ var htmlconetnt = {
       a += '<i class="fa fa-plus-square" style="color:green"></i>';
       a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
     }
-    return a;
+    var aobj = $(a);
+    aobj.each(function(){
+      if($(this).is(".mytipsboxcs")){
+        $(this).click(function(){
+          mytipsbox.insertnewsP = $(this);
+          mytipsbox.selecttipbox();
+        });
+      }
+    });
+    return aobj;
   },
   textmessage:function(){
       var a = '<br>';
@@ -369,7 +388,12 @@ var htmlconetnt = {
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
         a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
-    return a;
+    var aobj = $(a);
+    $(aobj[2]).click(function(){
+      mytipsbox.insertnewsP = $(this);
+      mytipsbox.selecttipbox();
+    });
+    return aobj;
   },
   tagkeyword:function(){
     var a = '<div class="form-group">';
@@ -1130,7 +1154,6 @@ var menu = {
     });
     $("#addsubmenusubmit").click(function(){
       self.ajaxaddsubbutton();
-      // alert(self.subbuttonfun);
     });
     $(".menu-hierarachy").on("click", ".m-menuchange .fa-edit", function(){
       var parent = $(this).parent().parent().parent();
