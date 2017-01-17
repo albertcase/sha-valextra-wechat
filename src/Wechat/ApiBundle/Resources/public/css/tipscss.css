@@ -85,6 +85,12 @@
   padding:10px;
   border-radius: 6px;
   color: #fff;
+  margin-top: -300px;
+  margin-left: 80px;
+}
+
+.mytipsboxcs>span{
+  position:relative;
 }
 
 .tiploading{

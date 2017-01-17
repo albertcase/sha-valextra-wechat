@@ -20,27 +20,10 @@ $val += '</ul>';
 $val += '</div>';
 $val += '</div>';
 $val += '</div>';
-    this.tipboxobj.html($val);
-    this.tipboxobj[0].scrollTop = 0;//select top
-    this.traggletipbox(mytipsbox.insertnewsP);
-    this.tipboxobj.show();
-    this.tipboxobj.find(".tip-newa").each(function(){
-      $(this).click(function(){
-        if(mytipsbox.insertnewsP){
-          var obj = $(this).parent();
-          var data = {
-            Title: obj.children("p").text(),
-            Description: obj.attr("digest"),
-            Url: obj.children("a").attr("onurl"),
-            PicUrl: obj.children("img").attr("src"),
-          };
-          mytipsbox.insertnewsP.after(htmlconetnt.loadpushmessage(data));
-          mytipsbox.insertnewsP.prev().remove();
-          mytipsbox.insertnewsP.remove();
-          mytipsbox.tipboxobj.hide();
-        }
-      });
-    });
+    mytipsbox.tipboxobj.html($val);
+    mytipsbox.tipboxobj[0].scrollTop = 0;//select top
+    mytipsbox.traggletipbox();
+    mytipsbox.tipboxobj.show();
     },
     insertnewsP: null,
     ajaxloadlist: function(){
@@ -65,31 +48,39 @@ $val += '</div>';
     },
     selecttipbox: function(){
       var self = this;
-      if(this.tipboxobj){
-        self.traggletipbox(mytipsbox.insertnewsP);
-        return this.tipboxobj;
+      if(mytipsbox.tipboxobj){
+        self.traggletipbox();
+        return mytipsbox.tipboxobj;
       }
       var $box = '<div class="wehchat-mytips" style="display:none"></div>';
-      this.tipboxobj = $($box);
-      this.tipboxobj.appendTo("body");
+      mytipsbox.tipboxobj = $($box);
       this.ajaxloadlist();
-      return this.tipboxobj;
+      return mytipsbox.tipboxobj;
     },
-    traggletipbox: function(obj){
+    traggletipbox: function(){
       var self = this;
-      var L = obj.offset().left;
-      var T = obj.offset().top;
-      var BT = T-300;
-      var BL = L+80;
-      if(BT<0)
-        BT = 0;
-      if((document.body.offsetHeight - 450) < BT)
-        BT = document.body.offsetHeight - 450;
-      this.tipboxobj.css({
-        top: BT+"px",
-        left: BL+"px",
-      });
-      this.tipboxobj.toggle();
+      mytipsbox.tipboxobj.toggle();
+      if(!mytipsbox.insertnewsP.children("span").children(".wehchat-mytips").length){
+        mytipsbox.insertnewsP.children("span").append(mytipsbox.tipboxobj);
+        mytipsbox.tipboxobj.find(".tip-newa").each(function(){
+          $(this).click(function(e){
+            if(mytipsbox.insertnewsP){
+              var obj = $(this).parent();
+              var data = {
+                Title: obj.children("p").text(),
+                Description: obj.attr("digest"),
+                Url: obj.children("a").attr("onurl"),
+                PicUrl: obj.children("img").attr("src"),
+              };
+              mytipsbox.insertnewsP.after(htmlconetnt.loadpushmessage(data));
+              mytipsbox.insertnewsP.prev().remove();
+              mytipsbox.insertnewsP.remove();
+              mytipsbox.tipboxobj.hide();
+            }
+            e.stopPropagation();
+          });
+        });
+      }
       clearTimeout(self.autoclose);
       self.autoclose = setTimeout(function(){
         self.tipboxobj.hide();
@@ -158,19 +149,8 @@ $val += '</div>';
     addlistener: function(){
       var self = this;
       self.tipboxobj[0].addEventListener('mouseenter', function(){
-        self.tipboxobj[0].addEventListener('mouseleave', function(e){
-          clearTimeout(mytipsbox.autoclose);
-          mytipsbox.autoclose = setTimeout(function(){
-            mytipsbox.tipboxobj.hide();
-          },1000);
-        });
         clearTimeout(self.autoclose);
       });
-      var hidetipbox = function(){
-        mytipsbox.tipboxobj.hide();
-        document.removeEventListener('wheel', hidetipbox);
-      };
-      document.addEventListener('wheel', hidetipbox);
       self.tipboxobj[0].addEventListener('wheel', function(e){
         if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
           var scroltop = mytipsbox.tipboxobj.children("div").children("div")[0].scrollTop;
@@ -201,10 +181,11 @@ $val += '</div>';
         }
         e.stopPropagation();
       });
-      self.tipboxobj[0].addEventListener('scroll', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-      });
+      var tipclickbox = function(){
+        mytipsbox.tipboxobj.hide();
+        document.removeEventListener('click', tipclickbox);
+      };
+      document.addEventListener('click', tipclickbox);
     },
     addloadbox: function(){
 var a = "";

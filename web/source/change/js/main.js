@@ -270,11 +270,12 @@ var htmlconetnt = {
         a += '<hr>';
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
-        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
+        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span style="position:relative"></span></button>';
     var aobj = $(a);
-    $(aobj[3]).click(function(){
+    $(aobj[3]).click(function(e){
       mytipsbox.insertnewsP = $(this);
       mytipsbox.selecttipbox();
+      e.stopPropagation();
     });
     return aobj;
   },
@@ -301,11 +302,12 @@ var htmlconetnt = {
         a += '<hr>';
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
-        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
+        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span></span></button>';
     var aobj = $(a);
-    $(aobj[2]).click(function(){
+    $(aobj[2]).click(function(e){
       mytipsbox.insertnewsP = $(this);
       mytipsbox.selecttipbox();
+      e.stopPropagation();
     });
     return aobj;
   },
@@ -336,14 +338,15 @@ var htmlconetnt = {
     }
     if(la < 10){
       a += '<i class="fa fa-plus-square" style="color:green"></i>';
-      a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
+      a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span></span></button>';
     }
     var aobj = $(a);
     aobj.each(function(){
       if($(this).is(".mytipsboxcs")){
-        $(this).click(function(){
+        $(this).click(function(e){
           mytipsbox.insertnewsP = $(this);
           mytipsbox.selecttipbox();
+          e.stopPropagation();
         });
       }
     });
@@ -387,11 +390,12 @@ var htmlconetnt = {
         a += '<hr>';
         a += '</div>';
         a += '<i class="fa fa-plus-square" style="color:green"></i>';
-        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span data-tipso="" style="visibility:hidden;"></span></button>';
+        a += '<button type="button" style="margin-left:10px" class="btn btn-primary btn-xs mytipsboxcs">From Online<span></span></button>';
     var aobj = $(a);
-    $(aobj[2]).click(function(){
+    $(aobj[2]).click(function(e){
       mytipsbox.insertnewsP = $(this);
       mytipsbox.selecttipbox();
+      e.stopPropagation();
     });
     return aobj;
   },
