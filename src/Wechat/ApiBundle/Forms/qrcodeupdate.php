@@ -51,7 +51,7 @@ class qrcodeupdate extends FormRequest{
       return array('code' => '9', 'msg' => 'this qrcode not exists');
   }
 
-  public function getevents(){
+  public function getevents($id){
     $events = array();
     if(!isset($this->getdata['MsgType']))
       return $events;
@@ -60,6 +60,7 @@ class qrcodeupdate extends FormRequest{
         'Content' => $this->getdata['Content'],
       );
       $events = array(
+        'menuId' => $id,
         'MsgType' => 'text',
         'MsgData' => json_encode($MsgData, JSON_UNESCAPED_UNICODE),
       );
@@ -70,6 +71,7 @@ class qrcodeupdate extends FormRequest{
         'Articles' => json_decode($this->getdata['newslist'] ,true),
       );
       $events = array(
+        'menuId' => $id,
         'MsgType' => 'news',
         'MsgData' => json_encode($MsgData, JSON_UNESCAPED_UNICODE),
       );
