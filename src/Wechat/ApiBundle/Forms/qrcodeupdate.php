@@ -30,11 +30,21 @@ class qrcodeupdate extends FormRequest{
       $qrcodeinfo = $this->container->get('my.dataSql')->qrcodeinfo($this->getdata['id']);
       if($qrcodeinfo && isset($qrcodeinfo['0'])){
         $this->container->get('my.dataSql')->qrcodeUpdate(array('id' => $this->getdata['id']), array('qrName' => $this->getdata['qrName']));
-        if($event = $this->getevents($qrcodeinfo['0']['feedbackid'])){
-          $this->container->get('my.dataSql')->updateData(array('menuId' => $qrcodeinfo['0']['feedbackid']), $event, 'wechat_feedbacks');
+        $event = $this->getevents($qrcodeinfo['0']['feedbackid']);
+        if($this->container->get('my.dataSql')->searchData(array('menuId' => $qrcodeinfo['0']['feedbackid']), array('id'), 'wechat_feedbacks')){
+          if($event){
+            $this->container->get('my.dataSql')->updateData(array('menuId' => $qrcodeinfo['0']['feedbackid']), $event, 'wechat_feedbacks');
+          }else{
+            $this->container->get('my.dataSql')->deleteData(array('menuId' => $qrcodeinfo['0']['feedbackid']), 'wechat_feedbacks');
+          }
         }else{
-          $this->container->get('my.dataSql')->deleteData(array('menuId' => $qrcodeinfo['0']['feedbackid']), 'wechat_feedbacks');
-          $this->container->get('my.dataSql')->qrcodeUpdate(array('id' => $this->getdata['id']), array('feedbackid' => NULL));
+          if($event){
+            if(!$event['menuId']){
+             $event['menuId'] = 'qrcode'.uniqid();
+             $this->container->get('my.dataSql')->qrcodeUpdate(array('id' => $this->getdata['id']), array('feedbackid' => $event['menuId']));
+           }
+            $this->container->get('my.dataSql')->insertData($event, 'wechat_feedbacks');
+          }
         }
         return array('code' => '10', 'msg' => 'update success');
       }
