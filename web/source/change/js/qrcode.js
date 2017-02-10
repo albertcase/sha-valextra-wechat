@@ -283,6 +283,9 @@ var qrcode = {
       if($("#addqrcode .pushmessage .fa-minus-square").length >= 10)
         $("#addqrcode .pushmessage .fa-plus-square").remove();
     });
+    $("#addqrcode").on("click",".fa-minus-square", function(){
+      $(this).parent().remove();
+    });
     // edit
     $("#editqrcode").on("change", ".newsfile", function(){
       fileupload.sendfiles($(this)[0].files[0], $(this));
@@ -297,7 +300,9 @@ var qrcode = {
       if($("#editqrcode .pushmessage .fa-minus-square").length >= 10)
         $("#editqrcode .pushmessage .fa-plus-square").remove();
     });
-
+    $("#editqrcode").on("click",".fa-minus-square", function(){
+      $(this).parent().remove();
+    });
     $("#editqrcode").on("click", '.buttontype>.btn-default', function(){
       self.updateFun = "e"+($(this).attr("action"));
       publicall.activemenu("editqrcode", $(this));
